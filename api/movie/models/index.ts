@@ -1,10 +1,13 @@
 import { Schema, model } from 'mongoose';
 
-const movieModel = new Schema({
+const movieModel = model('movie', new Schema({
   name: {
     type: String,
     required: true,
   },
-});
+}),
+);
 
-export default model('Movie', movieModel);
+export {
+  movieModel,
+};

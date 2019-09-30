@@ -1,29 +1,35 @@
 import * as React from 'react';
-import {EffectCallback} from "react";
+import Header from './Header';
 
 const App: React.FC = () => {
   const [movies, setMovies] = React.useState([]);
 
-  React.useEffect((props, nextProps) => {
-    if (props.movies.length === nextProps.movies.length) return;
+  React.useEffect(
+    () => {
+      fetch('/movies')
+        .then((response) => {
+          return response.json();
+        })
+        .then((myJson) => {
+          setMovies(myJson.movies);
+        });
+    },
+    [movies.length],
+  );
 
-    fetch('/movies')
-      .then((response) => {
-        return response.json();
-      })
-      .then((myJson) => {
-        // console.log(myJson)
-        // setMovies(myJson.movies);
-      });
-  });
+  const renderMapList = () => {
+    return movies.map((item: { id: string, name: string}) => (
+      <div key={item.id}>{item.name}</div>
+    ));
+  };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        Movies list
-      </header>
-      <div>
-        {movies.map((item: { id: string, name: string}) => (<div key={item.id}>{item.name}</div>))}
+    <div className="app">
+      <Header />
+      <div className="container">
+        <div>
+          {renderMapList}
+        </div>
       </div>
     </div>
   );
