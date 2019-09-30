@@ -1,11 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 
 const App: React.FC = () => {
   fetch('/ping')
-    .then(function(response) {
+    .then((response) => {
       return response.json();
     })
-    .then(function(myJson) {
+    .then((myJson) => {
       console.log(JSON.stringify(myJson));
     });
 

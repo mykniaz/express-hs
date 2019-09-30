@@ -1,9 +1,7 @@
 {
-  "extends": ["tslint:recommended", "tslint-react", "tslint-config-airbnb"],
-  "linterOptions": {"exclude": ["config/**/*.js", "api/**/*"]},
+  "extends": ["tslint:recommended", "tslint-config-airbnb"],
   "plugins": [
-    {"name": "typescript-tslint-plugin"},
-    {"name": "react-hooks"}
+    {"name": "typescript-tslint-plugin"}
   ],
   "rules": {
     "no-empty": false,
@@ -15,8 +13,6 @@
     "prefer-array-literal": false,
     "ordered-imports": false,
     "object-literal-sort-keys": false,
-    "no-console": false,
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn"
+    "no-console": false
   }
 }
