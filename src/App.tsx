@@ -1,6 +1,14 @@
 import React from 'react';
 
 const App: React.FC = () => {
+  fetch('/ping')
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(myJson) {
+      console.log(JSON.stringify(myJson));
+    });
+
   return (
     <div className="App">
       <header className="App-header">
