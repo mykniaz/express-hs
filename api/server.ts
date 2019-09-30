@@ -7,8 +7,8 @@ import * as routes from './routes';
 import { Database } from './database';
 
 // Constants
-const PORT = process.env.PORT || 8080;
-const URI = process.env.MONGO_URI || 'mongodbasdasd+srv://root-express-hs:root-express-hs@express-hs-db-fmwzu.mongodb.net/data';
+const PORT = process.env.PORT || 8000;
+const URI = process.env.MONGO_URI || 'mongodb+srv://root-express-hs:root-express-hs@express-hs-db-fmwzu.mongodb.net/data';
 
 const api = express();
 
@@ -22,6 +22,6 @@ database.connect()
     Error(`Database connection error: ${e}`);
   });
 
-api.use('/ping', routes.movieRouter);
+api.use('/movies', routes.movieRouter);
 
 export default api;

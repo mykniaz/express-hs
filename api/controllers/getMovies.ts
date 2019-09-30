@@ -1,12 +1,13 @@
 import { Request, Response } from 'express';
 
-function getMovies(req: Request, res: Response) {
+import { Movie } from '../models';
+
+const getMovies = async (req: Request, res: Response) =>  {
+  const movies = await Movie.find({});
+
   res.send({
-    users:[
-      { id: 1, name: 'How to train your dragon' },
-      { id: 2, name: 'Queen of Katwe' },
-    ],
+    movies,
   });
-}
+};
 
 export default getMovies;

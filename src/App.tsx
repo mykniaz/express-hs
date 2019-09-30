@@ -1,29 +1,30 @@
 import * as React from 'react';
+import {EffectCallback} from "react";
 
 const App: React.FC = () => {
-  fetch('/ping')
-    .then((response) => {
-      return response.json();
-    })
-    .then((myJson) => {
-      console.log(JSON.stringify(myJson));
-    });
+  const [movies, setMovies] = React.useState([]);
+
+  React.useEffect((props, nextProps) => {
+    if (props.movies.length === nextProps.movies.length) return;
+
+    fetch('/movies')
+      .then((response) => {
+        return response.json();
+      })
+      .then((myJson) => {
+        // console.log(myJson)
+        // setMovies(myJson.movies);
+      });
+  });
 
   return (
     <div className="App">
       <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        Movies list
       </header>
+      <div>
+        {movies.map((item: { id: string, name: string}) => (<div key={item.id}>{item.name}</div>))}
+      </div>
     </div>
   );
 };
