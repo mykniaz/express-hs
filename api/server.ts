@@ -1,7 +1,7 @@
 import express from 'express';
 
 // Routers
-import * as routes from './movie/routes';
+import { moviesRouter } from './movies/routes';
 
 // Database
 import { Database } from './database';
@@ -23,6 +23,5 @@ database.connect()
     Error(`Database connection error: ${e}`);
   });
 
-api.use('/movies', routes.movieRouter);
-
-export default api;
+api.use('/movies', moviesRouter);
+api.use('/users', moviesRouter);
