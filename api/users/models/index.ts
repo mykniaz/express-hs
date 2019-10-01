@@ -5,6 +5,11 @@ const userModel = model('movie', new Schema({
     type: String,
     required: true,
   },
+  email: {
+    type: String,
+    required: true,
+    password: String,
+  },
 }),
 );
 

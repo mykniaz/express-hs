@@ -1,7 +1,9 @@
-import get from './get';
-import create from './create';
+import getMovieController from './getMovieController';
+import createMovieController from './createMovieController';
+import deleteMovieController from './deleteMovieController';
 
 export {
-  get,
-  create,
+  getMovieController,
+  createMovieController,
+  deleteMovieController,
 };

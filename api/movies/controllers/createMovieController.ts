@@ -2,16 +2,17 @@ import { Request, Response } from 'express';
 
 import { movieModel } from '../models';
 
-const createMovies = async (req: Request, res: Response) =>  {
-  const newMovie = await movieModel.create({
-    type: 'horror',
-  });
+const createMovieController = async (req: Request, res: Response) =>  {
+  const { name, type } = req.body;
 
-  console.log(newMovie);
+  const newMovie = await movieModel.create({
+    name,
+    type,
+  });
 
   res.send({
     newMovie,
   });
 };
 
-export default createMovies;
+export default createMovieController;

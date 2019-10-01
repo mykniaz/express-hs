@@ -1,7 +1,9 @@
-import get from './get';
-import create from './create';
+import getUserController from './getUserController';
+import createUserController from './createUserController';
+import deleteUserController from './deleteUserController';
 
 export {
-  get,
-  create,
+  getUserController,
+  createUserController,
+  deleteUserController,
 };

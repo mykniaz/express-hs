@@ -5,6 +5,10 @@ const movieModel = model('movie', new Schema({
     type: String,
     required: true,
   },
+  type: {
+    type: String,
+    required: true,
+  },
 }),
 );
 

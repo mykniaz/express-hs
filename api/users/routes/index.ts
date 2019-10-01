@@ -1,9 +1,10 @@
 import { Router } from 'express';
-import { get, create } from '../controllers';
+import { getUserController, createUserController, deleteUserController } from '../controllers';
 
 const userRouter = Router();
 
-userRouter.get('/', get);
-userRouter.get('/create', create);
+userRouter.get('/', getUserController);
+userRouter.get('/create', createUserController);
+userRouter.get('/delete', deleteUserController);
 
 export { userRouter };

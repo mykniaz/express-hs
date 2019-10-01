@@ -1,9 +1,12 @@
 import { Router } from 'express';
-import { get, create } from '../controllers';
+import { json } from 'body-parser';
+
+import { getMovieController, createMovieController, deleteMovieController } from '../controllers';
 
 const moviesRouter = Router();
 
-moviesRouter.get('/', get);
-moviesRouter.get('/create', create);
+moviesRouter.get('/', getMovieController);
+moviesRouter.post('/create', json(), createMovieController);
+moviesRouter.post('/del', json(), deleteMovieController);
 
 export { moviesRouter };

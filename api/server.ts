@@ -1,4 +1,5 @@
 import express from 'express';
+import { json } from 'body-parser';
 
 // Routers
 import { moviesRouter } from './movies/routes';
@@ -13,6 +14,11 @@ const URI = process.env.MONGO_URI
 
 const api = express();
 
+api.use(json({ type: 'application/*+json' }));
+
+api.use('/movies', moviesRouter);
+api.use('/users', moviesRouter);
+
 const database = new Database(URI);
 
 database.connect()
@@ -20,8 +26,5 @@ database.connect()
     api.listen(PORT, () => console.log(`Listen port ${PORT}...`));
   })
   .catch((e) => {
-    Error(`Database connection error: ${e}`);
+    throw new Error(`Database connection error: ${e}`);
   });
-
-api.use('/movies', moviesRouter);
-api.use('/users', moviesRouter);
