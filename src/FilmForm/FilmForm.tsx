@@ -1,6 +1,10 @@
 import * as React from 'react';
 
-const Form: React.FC<{onCreate: () => void}> = ({ onCreate }) => {
+import { Request } from '../utils';
+
+import Preloader from '../Preloader';
+
+const FilmForm: React.FC<{onCreate: () => void}> = ({ onCreate }) => {
   const [formData, setFormData] = React.useState({ name: '', type: '' });
   const [isShownPreloader, setPreloader] = React.useState(false);
 
@@ -14,11 +18,9 @@ const Form: React.FC<{onCreate: () => void}> = ({ onCreate }) => {
     if (formData.name !== '' && formData.type !== '') {
       setPreloader(true);
 
-      fetch('/movies/create', {
-        method: 'POST',
-        body: JSON.stringify(formData),
-        headers: { 'Content-Type': 'application/json' },
-      })
+      const request = new Request();
+
+      request.post('/movies/create', formData)
         .then((response: Response) => {
           setDefaultData();
 
@@ -33,11 +35,7 @@ const Form: React.FC<{onCreate: () => void}> = ({ onCreate }) => {
     }
   };
 
-  const sendButton = isShownPreloader ? (
-    <div className="spinner-border text-secondary" role="status">
-      <span className="sr-only">Loading...</span>
-    </div>
-  ) : (<button type="submit" className="btn btn-primary">Add</button>);
+  const sendButton = isShownPreloader ? (<Preloader />) : (<button type="submit" className="btn btn-primary">Add</button>);
 
   return (
     <div className="card">
@@ -75,4 +73,4 @@ const Form: React.FC<{onCreate: () => void}> = ({ onCreate }) => {
   );
 };
 
-export default Form;
+export default FilmForm;

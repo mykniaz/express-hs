@@ -3,12 +3,13 @@ import { Request, Response } from 'express';
 import { userModel } from '../models';
 
 const deleteUserController = async (req: Request, res: Response) =>  {
-  const { _id } = req.body;
+  const { id } = req.body;
 
-  const remMovie = await userModel.delete({ _id });
+  const remUser = await userModel.delete({ _id: id });
 
   res.send({
-    remMovie,
+    ...remUser,
+    id: remUser._id,
   });
 };
 

@@ -3,12 +3,13 @@ import { Request, Response } from 'express';
 import { movieModel } from '../models';
 
 const deleteMovieController = async (req: Request, res: Response) =>  {
-  const { _id } = req.body;
+  const { id } = req.body;
 
-  const remMovie = await movieModel.delete({ _id });
+  const remMovie = await movieModel.find({ _id: id }).remove();
 
   res.send({
-    remMovie,
+    ...remMovie,
+    id: remMovie._id,
   });
 };
 

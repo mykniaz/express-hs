@@ -3,12 +3,13 @@ import { Request, Response } from 'express';
 import { userModel } from '../models';
 
 const getUserController = async (req: Request, res: Response) =>  {
-  const { _id } = res.body;
+  const { id } = req.body;
 
-  const user = await userModel.find(_id);
+  const user = await userModel.find(id);
 
   res.send({
-    user,
+    ...user,
+    id: user._id,
   });
 };
 

@@ -7,6 +7,6 @@ const moviesRouter = Router();
 
 moviesRouter.get('/', getMovieController);
 moviesRouter.post('/create', json(), createMovieController);
-moviesRouter.post('/del', json(), deleteMovieController);
+moviesRouter.post('/delete', json(), deleteMovieController);
 
 export { moviesRouter };
