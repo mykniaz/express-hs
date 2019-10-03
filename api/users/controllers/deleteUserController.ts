@@ -1,16 +1,13 @@
 import { Request, Response } from 'express';
 
-import { userModel } from '../models';
+import { TUserProps, userModel } from '../models';
 
 const deleteUserController = async (req: Request, res: Response) =>  {
   const { id } = req.body;
 
-  const remUser = await userModel.delete({ _id: id });
+  const remUser: TUserProps = await userModel.deleteOne({ _id: id });
 
-  res.send({
-    ...remUser,
-    id: remUser._id,
-  });
+  res.send(remUser);
 };
 
 export default deleteUserController;

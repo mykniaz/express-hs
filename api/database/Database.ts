@@ -5,6 +5,7 @@ export default class Database {
   protected config = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useCreateIndex: true,
   };
 
   constructor (uri: string, config: object = {}) {

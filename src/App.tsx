@@ -1,14 +1,19 @@
 import * as React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Header from './Header';
-import { MoviesPage, LoginPage } from './Pages';
+import { MoviesPage, AuthPage, LoginPage } from './Pages';
 
 const App: React.FC = () => {
 
   return (
     <BrowserRouter>
-      <div className="app">
+      <div className="container">
         <Header/>
+        <Route
+          path="/auth"
+          exact={true}
+          component={AuthPage}
+        />
         <Route
           path="/login"
           exact={true}

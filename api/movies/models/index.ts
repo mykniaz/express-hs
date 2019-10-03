@@ -1,17 +1,19 @@
-import { Schema, model } from 'mongoose';
+import { createSchema, Type, typedModel, ExtractDoc, ExtractProps } from 'ts-mongoose';
 
-const movieModel = model('movie', new Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  type: {
-    type: String,
-    required: true,
-  },
-}),
-);
+const movieSchema = createSchema({
+  name: Type.string(),
+  type: Type.string(),
+});
+
+type TMovieSchema = ExtractDoc<typeof movieSchema>;
+interface IMovieProps extends ExtractProps<typeof movieSchema> {
+  _id: string;
+}
+
+const movieModel = typedModel('movie', movieSchema);
 
 export {
   movieModel,
+  IMovieProps,
+  TMovieSchema,
 };

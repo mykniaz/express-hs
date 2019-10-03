@@ -1,24 +1,28 @@
-import { Schema, model } from 'mongoose';
+import { createSchema, Type, typedModel, ExtractDoc, ExtractProps } from 'ts-mongoose';
 import bcrypt from 'bcrypt';
 
-const userSchema = new Schema({
-  name: {
-    type: String,
-    unique: true,
-    required: true,
-  },
-  email: {
-    type: String,
-    unique: true,
-    required: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-});
+enum Roles {
+  user = 10,
+  admin = 20,
+}
 
-userSchema.pre('save', function (next) {
+const userSchema = createSchema(
+  {
+    login: Type.string({ unique: true }),
+    email: Type.string({ unique: true }),
+    password: Type.string(),
+    role: Type.number({ enum: Roles, default: Roles.user }),
+  },
+);
+
+type TUserProps = ExtractProps<typeof userSchema>;
+type TUserSchema = ExtractDoc<typeof userSchema>;
+interface IUserProps extends TUserProps {
+  _id: string;
+  comparePassword?: (plaintext: string, callback: any) => any;
+}
+
+userSchema.pre('save', function (this: TUserSchema, next) {
   if (!this.isModified('password')) {
     return next();
   }
@@ -31,8 +35,11 @@ userSchema.methods.comparePassword = function (plaintext, callback) {
   return callback(null, bcrypt.compareSync(plaintext, this.password));
 };
 
-const userModel = model('user', userSchema);
+const userModel = typedModel('user', userSchema);
 
 export {
   userModel,
+  IUserProps,
+  TUserProps,
+  TUserSchema,
 };

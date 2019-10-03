@@ -1,13 +1,14 @@
 import { Request, Response } from 'express';
 
-import { movieModel } from '../models';
+import { movieModel, IMovieProps } from '../models';
 
 const getMovieController = async (req: Request, res: Response) =>  {
-  const movies = await movieModel.find({});
+  const movies: IMovieProps[] = await movieModel.find({});
 
-  const newMovies = movies.map(({ _doc }) => ({
-    ..._doc,
-    id: _doc._id,
+  const newMovies = movies.map((item, index) => ({
+    id: item._id,
+    type: item.type,
+    name: item.name,
   }));
 
   res.send({ movies: newMovies });

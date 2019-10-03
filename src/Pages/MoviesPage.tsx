@@ -75,14 +75,14 @@ const MoviesPage = () => {
   };
 
   return (
-    <div className="container my-4">
+    <React.Fragment>
       {mapList(isShownPreloader, movies)}
       <div className="row">
         <div className="col-sm-12">
           <FilmForm onCreate={updateMovies}/>
         </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 

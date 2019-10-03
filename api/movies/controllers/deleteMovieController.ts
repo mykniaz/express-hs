@@ -5,12 +5,9 @@ import { movieModel } from '../models';
 const deleteMovieController = async (req: Request, res: Response) =>  {
   const { id } = req.body;
 
-  const remMovie = await movieModel.deleteOne({ _id: id });
+  const deleteMovie = await movieModel.deleteOne({ _id: id });
 
-  res.send({
-    ...remMovie,
-    id: remMovie._id,
-  });
+  res.send(deleteMovie);
 };
 
 export default deleteMovieController;

@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 
-import { userModel } from '../models';
+import { IUserProps, userModel } from '../models';
 
 const loginMovieController = async (req: Request, res: Response) =>  {
   try {
-    const user = await userModel.findOne({ username: req.body.username }).exec();
+    const user: IUserProps = await userModel.findOne({ login: req.body.login }).exec();
 
     if (!user) {
       return res.status(400).send({ message: 'The username does not exist' });

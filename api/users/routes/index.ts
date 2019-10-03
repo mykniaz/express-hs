@@ -6,13 +6,14 @@ import {
   loginUserController,
   deleteUserController,
 } from '../controllers';
+import { json } from 'body-parser';
 
 const userRouter = Router();
 
-userRouter.get('/auth', authUserController);
-userRouter.get('/login', loginUserController);
+userRouter.post('/auth', json(), authUserController);
+userRouter.post('/login', json(), loginUserController);
 userRouter.get('/user/get', getUserController);
-userRouter.get('/user/edit', editUserController);
-userRouter.get('/user/delete', deleteUserController);
+userRouter.post('/user/edit', json(), editUserController);
+userRouter.post('/user/delete', json(), deleteUserController);
 
 export { userRouter };

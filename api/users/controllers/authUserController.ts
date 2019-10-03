@@ -4,15 +4,15 @@ import { userModel } from '../models';
 
 const authUserController = async (req: Request, res: Response) =>  {
   const {
-    name,
     email,
+    login,
     password,
   } = req.body;
 
   try {
     const user = new userModel({
-      name,
       email,
+      login,
       password,
     });
 
