@@ -16,7 +16,15 @@ const loginMovieController = async (req: Request, res: Response) =>  {
       }
     });
 
-    res.send({ message: 'The username and password combination is correct!' });
+    res.send({
+      message: 'The username and password combination is correct!',
+      user: {
+        id: user._id,
+        login: user.login,
+        email: user.email,
+        role: user.role,
+      },
+    });
   } catch (error) {
     res.status(500).send(error);
   }
