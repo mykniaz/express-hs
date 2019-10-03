@@ -1,9 +1,13 @@
 import getUserController from './getUserController';
-import createUserController from './createUserController';
+import authUserController from './authUserController';
+import editUserController from './editUserController';
+import loginUserController from './loginUserController';
 import deleteUserController from './deleteUserController';
 
 export {
   getUserController,
-  createUserController,
+  authUserController,
+  editUserController,
+  loginUserController,
   deleteUserController,
 };

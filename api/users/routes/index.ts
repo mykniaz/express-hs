@@ -1,10 +1,18 @@
 import { Router } from 'express';
-import { getUserController, createUserController, deleteUserController } from '../controllers';
+import {
+  getUserController,
+  editUserController,
+  authUserController,
+  loginUserController,
+  deleteUserController,
+} from '../controllers';
 
 const userRouter = Router();
 
-userRouter.get('/', getUserController);
-userRouter.get('/create', createUserController);
-userRouter.get('/delete', deleteUserController);
+userRouter.get('/auth', authUserController);
+userRouter.get('/login', loginUserController);
+userRouter.get('/user/get', getUserController);
+userRouter.get('/user/edit', editUserController);
+userRouter.get('/user/delete', deleteUserController);
 
 export { userRouter };
